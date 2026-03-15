@@ -1,0 +1,30 @@
+# A standard pre-commit file that can be copy and pasted from a script to
+# save setting it up for every project.
+repos:
+-   repo: https://github.com/doublify/pre-commit-rust
+    rev: v1.0
+    hooks:
+    -   id: cargo-check
+        args: ["--workspace", "vv"]
+
+    -   id: fmt
+        args: ["--", "--check", "-v"]
+
+    -   id: clippy
+        args: ["--", "-D", "warnings"]
+
+-   repo: https://github.com/gitleaks/gitleaks
+    rev: v8.30.1
+    hooks:
+      - id: gitleaks
+        args: ["--no-banner"]
+
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      # No file format hooks, let cargo fmt do the work.
+      - id: check-json
+      - id: check-toml
+      - id: check-yaml
+      - id: check-merge-conflict
+      - id: no-commit-to-branch
