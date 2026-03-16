@@ -11,7 +11,7 @@ fi
 
 cargo --version
 
-cargo_init_cmd="cargo init -q"
+cargo_init_cmd="cargo init"
 if [ -z ${INIT_LIB} ];
 then
     cargo_init_cmd="${cargo_init_cmd} --lib"
@@ -25,7 +25,7 @@ echo "$cargo_init_cmd" | bash 2> /dev/null
 # any existsing config. 
 if [ ! -f "${RepoRoot}/.pre-commit-config.yml" ];
 then
-    cp "${StdFileDir}/pre-commit.yaml" "${RepoRoot}/.pre-commit-config.yaml"
+    cp --no-clobber "${StdFileDir}/pre-commit.yaml" "${RepoRoot}/.pre-commit-config.yaml"
 fi
 prek auto-update --cooldown-days=31
 prek install
